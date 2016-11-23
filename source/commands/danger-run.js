@@ -6,6 +6,7 @@ var program = require("commander")
 import { getCISourceForEnv } from "../ci_source/ci_source"
 import { getPlatformForEnv } from "../platforms/platform"
 import Executor from "../runner/Executor"
+import { inspect } from 'util';
 
 program
   .option("-f, --fail-on-errors", "TODO: Fail on errors")
@@ -17,6 +18,9 @@ process.on("unhandledRejection", function(reason: string, p: any) {
 })
 
 const source = getCISourceForEnv(process.env)
+
+console.log(inspect(source, {depth: null}))
+
 if (!source) {
   console.log("Could not find a CI source for this run")
   // Check for ENV["CI"] and wanr they might want a local command instead?
