@@ -1,7 +1,7 @@
 {
-  "name": "@nsfmc/danger",
-  "version": "0.6.3",
-  "description": "Automate your culture",
+  "name": "danger",
+  "version": "0.6.3-pre2",
+  "description": "[DO NOT USE THIS VERSION!!!] Automate your culture",
   "main": "distribution/danger.js",
   "bin": {
     "danger": "distribution/commands/danger.js"
