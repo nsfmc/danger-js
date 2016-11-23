@@ -4,6 +4,7 @@
 
 ### 0.6.4
 * The env vars `DANGER_TEST_REPO` and `DANGER_TEST_PR` will allow you initialize the FakeCI with a repo of your choice. See README.md for more info
+* Warning if DANGER_GITHUB_API_TOKEN env var is not set
 
 ### 0.6.3
 
