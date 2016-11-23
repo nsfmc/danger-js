@@ -2,6 +2,10 @@
 
 //  Add your own contribution below
 
+### 0.6.4
+
+* Warning if DANGER_GITHUB_API_TOKEN env var is not set
+
 ### 0.6.3
 
 * Does not break commonmark on GitHub - orta
