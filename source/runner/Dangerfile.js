@@ -5,9 +5,11 @@
 
 import fs from "fs"
 import vm from "vm"
+import path from "path"
 import type { DangerResults } from "./DangerResults"
 import type { DangerDSLType } from "../dsl/DangerDSL"
 import type { MarkdownString } from "../dsl/Aliases"
+import { transform } from "babel-core"
 
 interface DangerContext {
 /* BEGIN FLOWTYPE EXPORT */
@@ -73,7 +75,17 @@ export class Dangerfile {
       .replace(/import danger /gi, "// import danger ")
       .replace(/import { danger/gi, "// import { danger ")
 
-    const script = new vm.Script(cleaned, {
+    const nodePath = path.resolve(path.dirname(file))
+
+    const transformed = transform(cleaned, {
+      ast: false,
+      presets: [
+        "stage-3", "es2015"]
+    }).code
+
+    console.log(transformed)
+
+    const script = new vm.Script(transformed, {
       filename: file,
       lineOffset: 1,
       columnOffset: 1,
@@ -111,6 +123,11 @@ export class Dangerfile {
       markdown,
       console,
       require,
+      process: {
+        env: {
+          NODE_PATH: nodePath
+        }
+      },
       danger: this.dsl
     }
 
